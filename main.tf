@@ -1,9 +1,19 @@
 terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
+  /*
+  cloud {
+    organization = "policy-as-code-training"
+    workspaces {
+      name = "policy-dev-anm"
     }
   }
+  */
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = " > 3.28.0"
+    }
+  }
+  required_version = ">= 0.14.0"
 }
 
 provider "aws" {
@@ -109,8 +119,10 @@ module "elb_http" {
 module "ec2_instances" {
   source = "./modules/aws-instance"
 
-  instance_count     = 2
-  instance_type      = "t2.micro"
+  # instance_count     = 3
+  instance_count     = var.instance_count
+  # instance_type      = "t2.micro"
+  instance_type      = var.instance_type
   subnet_ids         = module.vpc.private_subnets[*]
   security_group_ids = [module.app_security_group.this_security_group_id]
 
