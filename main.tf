@@ -71,7 +71,6 @@ module "lb_security_group" {
   # Start ANM change
   ingress_cidr_blocks = ["0.0.0.0/0"]
   
-  /*
   ingress_rules       = ["ssh-tcp"]
   ingress_with_cidr_blocks = [
     {
@@ -84,7 +83,6 @@ module "lb_security_group" {
       # cidr_blocks = "0.0.0.0/0"
     }
   ]
-  */
   # End ANM change
   
   tags = {
@@ -92,6 +90,14 @@ module "lb_security_group" {
     environment = "development"
   }
 }
+
+# ANM change start
+resource "aws_ebs_volume" "unencrypted" {
+  availability_zone = "us-west-1a"
+  size              = 8
+  encrypted         = false # Intentional violation: unencrypted EBS volume
+}
+# ANM change end
 
 resource "random_string" "lb_id" {
   length  = 3
