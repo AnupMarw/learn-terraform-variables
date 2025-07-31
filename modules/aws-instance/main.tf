@@ -27,4 +27,9 @@ resource "aws_instance" "app" {
     EOF
 
   tags = var.tags
+
+  metadata_options {
+    http_tokens = "required"
+    http_endpoint = "enabled"
+  }
 }
