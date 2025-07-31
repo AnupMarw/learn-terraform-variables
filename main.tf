@@ -68,9 +68,10 @@ module "lb_security_group" {
   description = "Security group for load balancer with HTTP ports open within VPC"
   vpc_id      = module.vpc.vpc_id
   
-  # ingress_cidr_blocks = ["0.0.0.0/0"]
+  ingress_cidr_blocks = ["0.0.0.0/0"]
+
   # Start ANM change
-  
+  /*
   ingress_cidr_blocks = ["10.0.0.0/16"]
   
   ingress_rules       = ["ssh-tcp"]
@@ -85,7 +86,7 @@ module "lb_security_group" {
       # cidr_blocks = "0.0.0.0/0"
     }
   ]
-  
+  */
   # End ANM change
   
   tags = {
