@@ -70,7 +70,7 @@ module "lb_security_group" {
 
   ingress_cidr_blocks = ["0.0.0.0/0"]
 
-  /*
+  
   # Start ANM change
   ingress_rules       = ["ssh-tcp"]
   ingress_with_cidr_blocks = [
@@ -83,8 +83,7 @@ module "lb_security_group" {
     }
   ]
   # End ANM change
-  */
-
+  
   tags = {
     project     = "project-alpha",
     environment = "development"
