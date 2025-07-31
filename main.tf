@@ -69,7 +69,9 @@ module "lb_security_group" {
   vpc_id      = module.vpc.vpc_id
 
   # Start ANM change
-  # ingress_cidr_blocks = ["0.0.0.0/0"]
+  ingress_cidr_blocks = ["0.0.0.0/0"]
+  
+  /*
   ingress_rules       = ["ssh-tcp"]
   ingress_with_cidr_blocks = [
     {
@@ -82,6 +84,7 @@ module "lb_security_group" {
       # cidr_blocks = "0.0.0.0/0"
     }
   ]
+  */
   # End ANM change
   
   tags = {
