@@ -142,13 +142,12 @@ module "ec2_instances" {
   subnet_ids         = module.vpc.private_subnets[*]
   security_group_ids = [module.app_security_group.this_security_group_id]
 
+  http_tokens = "required"
+  http_endpoint = "enabled"
+
   tags = {
     project     = "project-alpha",
     environment = "development"
   }
-
-  metadata_options {
-    http_tokens = "required"
-    http_endpoint = "enabled"
-  }
+  
 }
