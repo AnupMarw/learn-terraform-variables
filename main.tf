@@ -78,8 +78,10 @@ module "lb_security_group" {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
-      description = "SSH open to the world"
-      cidr_blocks = "0.0.0.0/0"
+      description = "SSH open to 192.168 subnet"
+      cidr_blocks = "192.168.0.0/24"
+      # description = "SSH open to the world"
+      # cidr_blocks = "0.0.0.0/0"
     }
   ]
   # End ANM change
