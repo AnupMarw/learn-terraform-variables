@@ -70,6 +70,21 @@ module "lb_security_group" {
 
   ingress_cidr_blocks = ["0.0.0.0/0"]
 
+  /*
+  # Start ANM change
+  ingress_rules       = ["ssh-tcp"]
+  ingress_with_cidr_blocks = [
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "SSH open to the world"
+      cidr_blocks = "0.0.0.0/0"
+    }
+  ]
+  # End ANM change
+  */
+
   tags = {
     project     = "project-alpha",
     environment = "development"
@@ -130,5 +145,10 @@ module "ec2_instances" {
   tags = {
     project     = "project-alpha",
     environment = "development"
+  }
+
+  metadata_options {
+    http_tokens = "required"
+    http_endpoint = "enabled"
   }
 }
